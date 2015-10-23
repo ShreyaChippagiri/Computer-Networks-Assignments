@@ -1,0 +1,47 @@
+Problems faced during the project:
+
+Sending the SMTP commands to the SMTP server in the correct format.The most difficult part was to send the data to SMTP server so the SMTP server puts the data into the body part of the email message.
+
+Things learned during the completion of project:
+
+1)Learned the basic concepts of python program.
+2)Learned how SMTP protocol internally works.
+3)Learned some of the classes include in MIME library.
+
+Reviews of the project:
+
+We have enjoyed the project,through it was a bit diffcult but it was worth to complete the project and we learned a lot of things due to it.
+
+OUTPUT: 
+
+surabhiiyer@ubuntu:~$ python asn2.py gmail-smtp-in.l.google.com 25
+220 mx.google.com ESMTP bf10si7886494pab.21
+HELO:surabhi
+250 mx.google.com at your service
+
+MAIL FROM:<surabhi.r.i@gmail.com>
+250 2.1.0 OK bf10si7886494pab.21
+
+RCPT TO:<a.subeen078@gmail.com>
+250 2.1.5 OK bf10si7886494pab.21
+
+DATA:
+Type att to send an attachment
+Type . to end your message
+354  Go ahead bf10si7886494pab.21
+
+hello
+att
+Type 1 to send a .txt file
+Type 2 to send a .png file
+2 
+Type the complete path of your file including the extension
+/home/surabhiiyer/Desktop/1.png
+.
+250 2.0.0 OK 1349507894 bf10si7886494pab.21
+
+press enter to send another mail or type quit
+quit
+221 2.0.0 closing connection bf10si7886494pab.21
+
+The mail was successfully recieved in the gmail inbox. Although the mail went into the spam folder sometimes. 

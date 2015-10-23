@@ -1,0 +1,244 @@
+SERVER SIDE OUTPUT: 
+
+surabhiiyer@ubuntu:~/Downloads$ python asn3.py -N 10 -s 30 --portno 12345 -w 3 -r 20
+
+
+	Server Port :  12345
+	Corruption percent of acks sent :  30 %
+	Corruption percent of packets sent :  20 %
+	Total number of packets :  10
+	Window size :  3
+
+
+20 % of  10 : 2 packets to be corrupted!!
+-----------------------------------------------------------------
+Further Calculations/Predictions : 
+Seq no of packets that will be corrupted :  [3, 8]
+Seq no of acks of received packets that will be corrupted :  [6, 7]
+-----------------------------------------------------------------
+
+SR RECEIVER or UDP Server ready to receive data
+Servent sent:  STARTING UDP CONNECTION - from sender
+
+
+-----------------------------------------------------------------
+
+Server Sent this :  0,1,A
+Packet number :  0  received at  2012-11-24 22:54:21.816441
+Ack sent :  0,1  at  2012-11-24 22:54:21.816506  (This will NOT GET CORRUPTED)
+
+Moving the window - WINDOW: [ 1 , 4 ]
+
+Corrupted List so far :  []
+Packets the receiver has :  ['0,1,A']
+-----------------------------------------------------------------
+
+Server Sent this :  1,1,B
+Packet number :  1  received at  2012-11-24 22:54:21.816559
+Ack sent :  1,1  at  2012-11-24 22:54:21.816574  (This will NOT GET CORRUPTED)
+
+Moving the window - WINDOW: [ 2 , 5 ]
+
+Corrupted List so far :  []
+Packets the receiver has :  ['0,1,A', '1,1,B']
+-----------------------------------------------------------------
+
+Server Sent this :  2,1,C
+Packet number :  2  received at  2012-11-24 22:54:21.816617
+Ack sent :  2,1  at  2012-11-24 22:54:21.816632  (This will NOT GET CORRUPTED)
+
+Moving the window - WINDOW: [ 3 , 6 ]
+
+Corrupted List so far :  []
+Packets the receiver has :  ['0,1,A', '1,1,B', '2,1,C']
+-----------------------------------------------------------------
+
+Server Sent this :  3,1,D
+PACKET CORRUPTED : checkum changed of seq number- 3
+
+Corrupted List so far :  [['3', '0', 'D']]
+Packets the receiver has :  ['0,1,A', '1,1,B', '2,1,C', '']
+-----------------------------------------------------------------
+
+Server Sent this :  4,1,E
+Packet number :  4  received at  2012-11-24 22:54:21.816831
+Ack sent :  4,1  at  2012-11-24 22:54:21.816851  (This will NOT GET CORRUPTED)
+
+Corrupted List so far :  [['3', '0', 'D']]
+Packets the receiver has :  ['0,1,A', '1,1,B', '2,1,C', '', '4,1,E']
+-----------------------------------------------------------------
+
+Server Sent this :  5,1,F
+Packet number :  5  received at  2012-11-24 22:54:21.816978
+Ack sent :  5,1  at  2012-11-24 22:54:21.816998  (This will NOT GET CORRUPTED)
+
+Corrupted List so far :  [['3', '0', 'D']]
+Packets the receiver has :  ['0,1,A', '1,1,B', '2,1,C', '', '4,1,E', '5,1,F']
+
+.........................................................END..............................................................................
+
+CLIENT SIDE OUTPUT: 
+surabhiiyer@ubuntu:~/Downloads$ python FINALUDPClient_sender.py
+
+Window size is : 3
+Total number of packets to be sent are : 10
+
+All the packets to be sent are :
+0,1,A
+1,1,B
+2,1,C
+3,1,D
+4,1,E
+5,1,F
+6,1,G
+7,1,H
+8,1,I
+9,1,J
+
+Packet being sent :  0 Window = [ 0 , 3 ]
+Sent Following Packet: ( 0,1,A ) ,at Time: 2012-11-24 22:54:21.816398
+
+Packet being sent :  1 Window = [ 0 , 3 ]
+Sent Following Packet: ( 1,1,B ) ,at Time: 2012-11-24 22:54:21.816449
+
+Packet being sent :  2 Window = [ 0 , 3 ]
+Sent Following Packet: ( 2,1,C ) ,at Time: 2012-11-24 22:54:21.816490
+
+WAITING for receive ack
+
+
+Ack received as :  ( 0,1 )
+Recieved Ack For Seq No: 0 at Time: 2012-11-24 22:54:21.816554
+WINDOW : [ 0 , 3 ]
+
+PACKETS ack-ed as off now are :  ['0,1']
+SEQUENCE NUMBERS ackedpackets :  [0]
+Moving the window
+
+ SENDING again
+
+Packet being sent :  3 Window = [ 1 , 4 ]
+Sent Following Packet: ( 3,1,D ) ,at Time: 2012-11-24 22:54:21.816643
+
+WAITING for receive ack
+
+
+Ack received as :  ( 1,1 )
+Recieved Ack For Seq No: 1 at Time: 2012-11-24 22:54:21.816703
+WINDOW : [ 1 , 4 ]
+
+PACKETS ack-ed as off now are :  ['0,1', '1,1']
+SEQUENCE NUMBERS ackedpackets :  [0, 1]
+Moving the window
+
+ SENDING again
+
+Packet being sent :  4 Window = [ 2 , 5 ]
+Sent Following Packet: ( 4,1,E ) ,at Time: 2012-11-24 22:54:21.816799
+
+WAITING for receive ack
+
+
+Ack received as :  ( 2,1 )
+Recieved Ack For Seq No: 2 at Time: 2012-11-24 22:54:21.816855
+WINDOW : [ 2 , 5 ]
+
+PACKETS ack-ed as off now are :  ['0,1', '1,1', '2,1']
+SEQUENCE NUMBERS ackedpackets :  [0, 1, 2]
+Moving the window
+
+ SENDING again
+
+Packet being sent :  5 Window = [ 3 , 6 ]
+Sent Following Packet: ( 5,1,F ) ,at Time: 2012-11-24 22:54:21.816946
+
+WAITING for receive ack
+
+
+Ack received as :  ( 4,1 )
+Recieved Ack For Seq No: 4 at Time: 2012-11-24 22:54:21.817002
+WINDOW : [ 3 , 6 ]
+
+PACKETS ack-ed as off now are :  ['0,1', '1,1', '2,1', '4,1']
+SEQUENCE NUMBERS ackedpackets :  [0, 1, 2, 4]
+TIMEOUT OCCURED!!!
+
+WAITING for receive ack
+
+
+Ack received as :  ( 5,1 )
+Recieved Ack For Seq No: 5 at Time: 2012-11-24 22:54:21.817098
+WINDOW : [ 3 , 6 ]
+
+PACKETS ack-ed as off now are :  ['0,1', '1,1', '2,1', '4,1', '5,1']
+SEQUENCE NUMBERS ackedpackets :  [0, 1, 2, 4, 5]
+TIMEOUT OCCURED!!!
+
+WAITING for receive ack
+TIMEOUT OCCURED!!!
+
+WAITING for receive ack
+TIMEOUT OCCURED!!!
+
+WAITING for receive ack
+TIMEOUT OCCURED!!!
+
+WAITING for receive ack
+TIMEOUT OCCURED!!!
+
+WAITING for receive ack
+TIMEOUT OCCURED!!!
+
+............................................................END...............................................................................
+
+
+In the above execution of the two programs, 
+Seq no of packets that will be corrupted = [3, 8]
+Seq no of acks of received packets that will be corrupted = [6, 7]
+
+Initially, the window on the receiver side hold the packets of sequence numbers, [0,1,2] (according to the output, base=0, end=3) 
+The sender sends a packet of sequence number 0.
+The Receiver then sends an ack back since it's not 6 or 7. 
+The window on the receiver side moves forward.
+
+Now the window on the receiver side has packets of sequence numbers, [1,2,3] (according to the output, base=1, end=4)
+
+The sender sends a packet of sequence number 1.
+The Receiver then sends an ack back since it's not 6 or 7. 
+The window moves receiver side forward.
+
+Now the window on the receiver side has packets of sequence numbers, [2,3,4] (according to the output, base=2, end=5)
+
+The sender sends a packet of sequence number 2.
+The Receiver then sends an ack back since it's not 6 or 7. 
+The window moves receiver side forward.
+
+Now the window on the receiver side has packets of sequence numbers, [3,4,5] (according to the output, base=3, end=6)
+
+Since packet 3 is corrupted, the checksum of the packet is changed to 0 (on the Receiver side) 
+The ack is not sent. 
+The window does not move. 
+
+The sender sends a packet of sequence number 4.
+The Receiver then sends an ack back since it's not 6 or 7. 
+The window does not move. 
+
+The sender sends a packet of sequence number 5.
+The Receiver then sends an ack back since it's not 6 or 7. 
+The window does not move. 
+
+The window does not move until the packet is retransmitted by the sender. Neither is the ack sent. A timeout occurs when the packet is not retransmitted soon enough. 
+
+CHALLENGES AND ISSUES: 
+This assignment was one of the most challenging among all the assignments given to us during the semester. We got a better understanding of the SR receiver. It was fun working on the assigment because it involved a lot of brain storming and coding.
+There was a tiny issue in ensuring the correctness of our receiver code because we could not rely completely on the other group's code. We had to come up with our own sender code to test our's. We got a little bit of help from Abeer and Aishwarya to write our own sender code. 
+
+
+
+
+
+
+
+
+
+
